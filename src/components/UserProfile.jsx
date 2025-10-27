@@ -1,6 +1,31 @@
 import React, { useState } from 'react';
 import './UserProfile.css';
 
+// Mock order history - static data moved outside component
+const ORDER_HISTORY = [
+  {
+    id: 1,
+    date: '2025-10-20',
+    items: ['Margherita Pizza', 'Caesar Salad'],
+    total: 28.50,
+    status: 'Delivered'
+  },
+  {
+    id: 2,
+    date: '2025-10-15',
+    items: ['Burger Deluxe', 'French Fries'],
+    total: 19.99,
+    status: 'Delivered'
+  },
+  {
+    id: 3,
+    date: '2025-10-10',
+    items: ['Pasta Carbonara'],
+    total: 15.99,
+    status: 'Delivered'
+  }
+];
+
 const UserProfile = ({ isOpen, onClose }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [userInfo, setUserInfo] = useState({
@@ -12,32 +37,7 @@ const UserProfile = ({ isOpen, onClose }) => {
     zipCode: '10001'
   });
 
-  const [editedInfo, setEditedInfo] = useState({ ...userInfo });
-
-  // Mock order history
-  const orderHistory = [
-    {
-      id: 1,
-      date: '2025-10-20',
-      items: ['Margherita Pizza', 'Caesar Salad'],
-      total: 28.50,
-      status: 'Delivered'
-    },
-    {
-      id: 2,
-      date: '2025-10-15',
-      items: ['Burger Deluxe', 'French Fries'],
-      total: 19.99,
-      status: 'Delivered'
-    },
-    {
-      id: 3,
-      date: '2025-10-10',
-      items: ['Pasta Carbonara'],
-      total: 15.99,
-      status: 'Delivered'
-    }
-  ];
+  const [editedInfo, setEditedInfo] = useState({});
 
   const handleEdit = () => {
     setIsEditing(true);
@@ -173,7 +173,7 @@ const UserProfile = ({ isOpen, onClose }) => {
           <section className="profile-section">
             <h3>Recent Orders</h3>
             <div className="order-history">
-              {orderHistory.map((order) => (
+              {ORDER_HISTORY.map((order) => (
                 <div key={order.id} className="order-item">
                   <div className="order-header">
                     <span className="order-date">{order.date}</span>
