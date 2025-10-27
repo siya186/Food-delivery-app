@@ -3,11 +3,13 @@ import Header from './components/Header'
 import Hero from './components/Hero'
 import Menu from './components/Menu'
 import Cart from './components/Cart'
+import UserProfile from './components/UserProfile'
 import Footer from './components/Footer'
 import './App.css'
 
 function App() {
   const [cartOpen, setCartOpen] = useState(false)
+  const [profileOpen, setProfileOpen] = useState(false)
   const [cartItems, setCartItems] = useState([])
 
   // Add item to cart
@@ -52,6 +54,7 @@ function App() {
       <Header 
         cartCount={cartCount} 
         onCartClick={() => setCartOpen(true)}
+        onProfileClick={() => setProfileOpen(true)}
       />
       <main>
         <Hero onOrderNow={() => window.scrollTo({ top: document.getElementById('menu').offsetTop - 60, behavior: 'smooth' })} />
@@ -65,6 +68,10 @@ function App() {
         onUpdateQuantity={handleUpdateQuantity}
         onRemoveItem={handleRemoveItem}
         onCheckout={handleCheckout}
+      />
+      <UserProfile
+        isOpen={profileOpen}
+        onClose={() => setProfileOpen(false)}
       />
     </div>
   )

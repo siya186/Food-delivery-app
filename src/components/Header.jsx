@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Header.css';
 
-const Header = ({ cartCount, onCartClick }) => {
+const Header = ({ cartCount, onCartClick, onProfileClick }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -20,6 +20,10 @@ const Header = ({ cartCount, onCartClick }) => {
         </nav>
 
         <div className="header-actions">
+          <button className="profile-button" onClick={onProfileClick} title="My Profile">
+            <span className="profile-icon">👤</span>
+          </button>
+          
           <button className="cart-button" onClick={onCartClick}>
             <span className="cart-icon">🛒</span>
             {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
